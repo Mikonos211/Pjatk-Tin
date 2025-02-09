@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    
+    <div class="background-container">
+        <div class="form-container">
+            <h1>Zaloguj się</h1>
+            <p>Imię</p>
+            <input type="text" id="FN">
+            <p class="error-message" id="error-message1">Proszę zmieścić się w przedziale znaków od 2 do 60</p>
+            
+            <p>Nazwisko</p>
+            <input type="text" id="SN">
+            <p class="error-message" id="error-message2">Proszę zmieścić się w przedziale znaków od 2 do 60</p>
+            
+            <p>Pesel</p>
+            <input type="text" id='pes'>
+            <p class="error-message" id="error-message3">To nie jest prawdziwy pesel</p>
+            
+            <p>Email</p>
+            <input type="email" id="email">
+            <p class="error-message" id="error-message4">Nie poprawny email</p>
+            
+            <button type="submit" id="acceptButton">Potwierdź</button>
+            <p class="summary-message" id="summary-message"></p>
+        </div>
+    </div>
+    <script>
+        const acceptButton = document.getElementById('acceptButton');
+
+        acceptButton.addEventListener('click', function() {
+            let errorCounter = 0;
+            let summaryMessages = [];
+
+            resetErrorMessages();
+
+            checkLength('FN', "error-message1", summaryMessages);
+            checkLength('SN', "error-message2", summaryMessages);
+            checkPesel('pes', "error-message3", summaryMessages);
+            checkEmail('email', "error-message4", summaryMessages);
+
+            if (summaryMessages.length > 0) {
+                const summaryMessage = document.getElementById("summary-message");
+                summaryMessage.innerHTML = "Błędy: " + summaryMessages.join(", ");
+                summaryMessage.style.display = 'block'; 
+            } else {
+                window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+            }
+        });
+
+        function resetErrorMessages() {
+            const errorMessages = document.querySelectorAll('.error-message');
+            errorMessages.forEach(message => {
+                message.style.display = 'none'; 
+            });
+            const summaryMessage = document.getElementById("summary-message");
+            summaryMessage.style.display = 'none'; 
+            summaryMessage.innerHTML = "";
+        }
+
+        function checkLength(id, error, summaryMessages) {
+            const input = document.getElementById(id).value.trim(); 
+            const errorMessage = document.getElementById(error);
+
+            if (input.length >= 2 && input.length <= 60) { 
+                errorMessage.style.display = 'none'; 
+            } else {
+                errorMessage.style.display = 'block'; 
+                summaryMessages.push("zle wpisane " + id); 
+            }
+        }
+
+        function checkPesel(id, error, summaryMessages) {
+            const peselInput = document.getElementById(id).value;
+            const errorMessage = document.getElementById(error);
+            if (isPeselValid(peselInput)) {
+                errorMessage.style.display = 'none';
+            } else {
+                errorMessage.style.display = 'block';
+                summaryMessages.push("zle wpisane " + id); 
+            }
+        }
+
+        function isPeselValid(pesel) {
+            let weight = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3];
+            let sum = 0;
+            let controlNumber = parseInt(pesel.charAt(10));
+
+            for (let i = 0; i < weight.length; i++) {
+                sum += (parseInt(pesel.charAt(i)) * weight[i]);
+            }
+            let lastFromSum = sum % 10;
+            return (10 - lastFromSum) % 10 === controlNumber;
+        }
+
+        function checkEmail(email, error, summaryMessages) {
+            const emailInput = document.getElementById(email).value;
+            const errorMessage = document.getElementById(error);
+            const emailForm = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (emailForm.test(emailInput)) {
+                errorMessage.style.display = 'none';
+            } else {
+                errorMessage.style.display = 'block';
+                summaryMessages.push("zle wpisane " + email); 
+            }
+        }
+    </script>
+</body>
+</html>

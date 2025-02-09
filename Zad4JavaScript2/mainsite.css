@@ -1,0 +1,86 @@
+* {
+    margin: 0; 
+    padding: 0; 
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    position: relative; 
+}
+
+.Naglowek {
+    display: flex;
+    padding: 20px;
+    gap: 10px; 
+    font-size: large;
+    justify-content: center;
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    background-color: hsla(195, 53%, 79%); 
+    z-index: 1; 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    
+
+}
+.opis{
+    position: absolute;
+    top: 20%; 
+    left: 30%;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid lightblue;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); 
+    background-color: hsla(195, 53%, 79%, 0.5); 
+   
+
+}
+img {
+    width: 100%; 
+    height: auto; 
+    display: block;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); 
+
+}
+h1{
+    text-align: center;
+    padding: 20px;
+    background-color: rgb(240, 240, 247);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); 
+
+
+}
+.bottom {
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+    width: 80%; 
+    flex-wrap: wrap; 
+    margin: auto; 
+}
+
+p2, p3 {
+    margin: 10px;
+    border: 1px solid lightblue;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); 
+
+
+
+}
+.Naglowek a {
+    text-decoration: none;  
+    color: inherit;          
+    cursor: pointer;         
+}
+
+footer{
+    text-align: center;
+    padding: 40px;
+    background-color: rgb(240, 240, 247);
+}
